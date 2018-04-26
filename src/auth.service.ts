@@ -1,0 +1,99 @@
+import {Injectable, EventEmitter} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {of as ObservableOf} from 'rxjs/observable/of';
+import {tap, map} from 'rxjs/operators';
+
+import {AbstractAuthConfigurator} from './abstract-auth-configurator';
+import {AuthTokenStorage} from './auth-token-storage.service';
+
+
+export enum LogoutReason
+{
+	Logout,
+	Inactivity,
+}
+
+
+export declare interface OnLoginArgs<U>
+{
+	user: U,
+}
+
+
+export declare interface OnLogoutArgs<U>
+{
+	user: U,
+	reason: LogoutReason,
+}
+
+
+@Injectable()
+export class AuthService<U>
+{
+
+
+	public readonly onLogin: EventEmitter<OnLoginArgs<U>> = new EventEmitter<OnLoginArgs<U>>();
+
+	public readonly onLogout: EventEmitter<OnLogoutArgs<U>> = new EventEmitter<OnLogoutArgs<U>>();
+
+	public redirectUrl: string|undefined;
+
+	private _user: U;
+
+
+	constructor(
+		private $config: AbstractAuthConfigurator<U>,
+		private $tokens: AuthTokenStorage<U>,
+	) {}
+
+
+	get loggedIn(): Observable<boolean>
+	{
+		return this.user.pipe(
+			map((user) => typeof user !== 'undefined'),
+		);
+	}
+
+
+	get user(): Observable<U|undefined>
+	{
+		if (typeof this._user !== 'undefined') {
+			return ObservableOf(this._user);
+		}
+
+		if (this.$tokens.isEmpty()) {
+			return ObservableOf(undefined);
+		}
+
+		const token = this.$tokens.readToken();
+
+		return this.$config.getUserByToken<U>(token).pipe(
+			tap((user) => this._user = user),
+		);
+	}
+
+
+	public login<D = any>(data: D): Observable<U>
+	{
+		return this.$config.login(data).pipe(
+			tap((user) => this._user = user),
+			tap((user) => this.onLogin.emit({
+				user: user,
+			})),
+		);
+	}
+
+
+	public logout(reason: LogoutReason = LogoutReason.Logout): void
+	{
+		if (typeof this._user !== 'undefined') {
+			this.onLogout.emit({
+				user: this._user,
+				reason: reason,
+			});
+
+			this._user = undefined;
+		}
+	}
+
+}
