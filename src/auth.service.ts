@@ -93,6 +93,7 @@ export class AuthService<U>
 			});
 
 			this._user = undefined;
+			this.$tokens.clear();
 		}
 	}
 
