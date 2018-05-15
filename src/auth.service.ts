@@ -10,7 +10,6 @@ import {AuthTokenStorage} from './auth-token-storage.service';
 export enum LogoutReason
 {
 	Logout,
-	Inactivity,
 	ServerLogout,
 }
 
