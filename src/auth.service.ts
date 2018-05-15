@@ -87,15 +87,13 @@ export class AuthService<U>
 
 	public logout(reason: LogoutReason = LogoutReason.Logout): void
 	{
-		if (typeof this._user !== 'undefined') {
-			this.onLogout.emit({
-				user: this._user,
-				reason: reason,
-			});
+		this.onLogout.emit({
+			user: this._user,
+			reason: reason,
+		});
 
-			this._user = undefined;
-			this.$tokens.clear();
-		}
+		this._user = undefined;
+		this.$tokens.clear();
 	}
 
 }
