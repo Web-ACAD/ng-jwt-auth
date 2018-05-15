@@ -23,7 +23,7 @@ export declare interface OnLoginArgs<U>
 export declare interface OnLogoutArgs<U>
 {
 	user: U,
-	reason: LogoutReason,
+	reason: LogoutReason|any,
 }
 
 
@@ -85,7 +85,7 @@ export class AuthService<U>
 	}
 
 
-	public logout(reason: LogoutReason = LogoutReason.Logout): void
+	public logout(reason: LogoutReason|any = LogoutReason.Logout): void
 	{
 		this.onLogout.emit({
 			user: this._user,
