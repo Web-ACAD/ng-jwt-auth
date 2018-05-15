@@ -109,7 +109,9 @@ export class AuthConfigurator extends AbstractAuthConfigurator<User>
 * `login`:
     + Method called when user is being signed into your application
     + Must return the `Observable` object with your user
-    
+* `logout` (not required):
+    + Method called when used is being logged out from your application
+
 ### Register configurator and ng-jwt-auth module
 
 Now you only have to register your configurator class as a service and import the ng-jwt-auth module:

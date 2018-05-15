@@ -48,4 +48,9 @@ export abstract class AbstractAuthConfigurator<U>
 
 	public abstract login<D = any>(data: D): Observable<U>;
 
+
+	public logout(user: U|undefined, reason: LogoutReason|any): void
+	{
+	}
+
 }

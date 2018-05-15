@@ -92,6 +92,7 @@ export class AuthService<U>
 			reason: reason,
 		});
 
+		this.$config.logout(this._user, reason);
 		this._user = undefined;
 		this.$tokens.clear();
 	}
