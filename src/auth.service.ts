@@ -1,7 +1,7 @@
 import {Injectable, EventEmitter} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {of as ObservableOf} from 'rxjs/observable/of';
-import {tap, map} from 'rxjs/operators';
+import {tap, map, catchError} from 'rxjs/operators';
 
 import {AbstractAuthConfigurator} from './abstract-auth-configurator';
 import {AuthTokenStorage} from './auth-token-storage.service';
@@ -69,6 +69,7 @@ export class AuthService<U>
 		const token = this.$tokens.readToken();
 
 		return this.$config.getUserByToken<U>(token).pipe(
+			catchError(() => ObservableOf(undefined)),
 			tap((user) => this._user = user),
 		);
 	}
