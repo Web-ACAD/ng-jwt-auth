@@ -20,16 +20,16 @@
 		"url": "https://www.davidkudera.com"
 	},
 	"peerDependencies": {
-		"@angular/core": ">=5.0.0",
-		"@angular/common": ">=5.0.0",
-		"@angular/router": ">=5.0.0",
+		"@angular/core": "^5.0",
+		"@angular/common": "^5.0",
+		"@angular/router": "^5.0",
 		"@webacad/ng-store": "^0.0.2",
 		"jwt-decode": "^2.2.0",
 		"rxjs": "^5.5.0"
 	},
 	"devDependencies": {
-		"@angular/compiler": ">=5.0.0",
-		"@angular/compiler-cli": ">=5.0.0",
+		"@angular/compiler": "^5.0",
+		"@angular/compiler-cli": "^5.0",
 		"@types/node": "8.0.19",
 		"ng-packagr": "^2.2.0",
 		"npm-install-peers": "^1.2.1",
