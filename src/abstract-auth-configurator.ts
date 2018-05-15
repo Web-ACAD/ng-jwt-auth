@@ -1,6 +1,8 @@
 import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
+import {LogoutReason} from './auth.service';
+
 
 export declare interface AuthConfiguratorOptions
 {
@@ -38,7 +40,7 @@ export abstract class AbstractAuthConfigurator<U>
 	}
 
 
-	public abstract isServerLogout(err: HttpErrorResponse): boolean;
+	public abstract isServerLogout(err: HttpErrorResponse): boolean|LogoutReason|any;
 
 	public abstract extractToken<T = any>(response: HttpResponse<T>): string|undefined;
 
