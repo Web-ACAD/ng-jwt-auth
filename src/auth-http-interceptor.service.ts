@@ -35,8 +35,8 @@ export class AuthHttpInterceptor<U> implements HttpInterceptor
 
 		return next.handle(duplicate).pipe(
 			catchError((err: HttpErrorResponse) => {
-				if (this.$config.isInactivityLogout(err)) {
-					this.$auth.logout(LogoutReason.Inactivity);
+				if (this.$config.isServerLogout(err)) {
+					this.$auth.logout(LogoutReason.ServerLogout);
 				}
 
 				return ObservableThrow(err);

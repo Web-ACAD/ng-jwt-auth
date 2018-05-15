@@ -11,6 +11,7 @@ export enum LogoutReason
 {
 	Logout,
 	Inactivity,
+	ServerLogout,
 }
 
 

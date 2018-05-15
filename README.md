@@ -62,9 +62,9 @@ export class AuthConfigurator extends AbstractAuthConfigurator<User>
         });
     }
 
-    public isInactivityLogout(err: HttpErrorResponse): boolean
+    public isServerLogout(err: HttpErrorResponse): boolean
     {
-        return err.status === 403 && err.error.reason === 'inactivity';
+        return err.status === 403;
     }
 
     public extractToken(response: HttpResponse<any>): string|undefined
@@ -95,10 +95,10 @@ export class AuthConfigurator extends AbstractAuthConfigurator<User>
 
 **Methods:**
 
-* `isInactivityLogout`:
+* `isServerLogout`:
     + Method called from @angular/common/http interceptor
     + Called on error response
-    + Should return `true` if server responded with unauthorized error due to token expiration
+    + Should return `true` if server wants you to logout the user
 * `extractToken`:
     + Method called from @angular/common/http interceptor
     + Should return raw string token from http response or `undefined` if token does not exists in response

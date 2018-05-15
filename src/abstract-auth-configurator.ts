@@ -38,7 +38,7 @@ export abstract class AbstractAuthConfigurator<U>
 	}
 
 
-	public abstract isInactivityLogout(err: HttpErrorResponse): boolean;
+	public abstract isServerLogout(err: HttpErrorResponse): boolean;
 
 	public abstract extractToken<T = any>(response: HttpResponse<T>): string|undefined;
 
