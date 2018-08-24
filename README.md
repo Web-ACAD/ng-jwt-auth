@@ -12,16 +12,16 @@ JWT authentication for angular.
 * Basic logged in router guard
 * Auto login on page refresh (uses [store](https://github.com/marcuswestin/store.js) to store the token in browser)
 
+## Dependencies
+
+* `@angular/core`
+* `@angular/common`
+* `@angular/router`
+* `@webacad/ng-store`
+* `jwt-decode`
+* `rxjs@^5.5.0`
+
 ## Installation
-
-**Dependencies:**
-
-* @angular/core
-* @angular/common
-* @angular/router
-* @webacad/ng-store
-* jwt-decode
-* rxjs@^5.5.0
 
 Install with npm:
 

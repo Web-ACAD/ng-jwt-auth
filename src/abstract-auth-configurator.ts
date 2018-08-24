@@ -1,5 +1,5 @@
 import {HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 import {LogoutReason} from './auth.service';
 

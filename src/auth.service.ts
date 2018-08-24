@@ -1,6 +1,5 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {of as ObservableOf} from 'rxjs/observable/of';
+import {Observable, of as ObservableOf} from 'rxjs';
 import {tap, map, catchError} from 'rxjs/operators';
 
 import {AbstractAuthConfigurator} from './abstract-auth-configurator';

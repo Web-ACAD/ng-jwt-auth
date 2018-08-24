@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {_throw as ObservableThrow} from 'rxjs/observable/throw';
+import {Observable, throwError as ObservableThrow} from 'rxjs';
 import {tap, catchError} from 'rxjs/operators';
 
 import {AbstractAuthConfigurator} from './abstract-auth-configurator';
